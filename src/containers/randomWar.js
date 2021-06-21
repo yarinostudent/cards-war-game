@@ -9,21 +9,14 @@ function RandomWar(props) {
   const player1 = useSelector((state) => state.player1)
   const player2 = useSelector((state) => state.player2)
   console.log(player1);
-  const numbers_ar = useSelector((state) => state.numbers_ar);
-  const suits_ar = useSelector((state) => state.suits_ar);
-  console.log(numbers_ar);
-  // const card1 = player1.card;
-  // const card2 = player2.card;
-  // console.log(card1, card2);
-  
-
+  console.log(player2);
 
   return (
     <div className="container">
       <h3 className="text-center">The Battle Begins..</h3>
       <div className="row text-center justify-content-evenly">
         <div className="col-lg-4">
-          <h3><span className="border-bottom">loadYarin</span></h3>
+          <h3><span className="border-bottom">{player1.name}</span></h3>
           <div className="">
             <img src={`./cards-images/${player1.card.suit}/${player1.card.num}.png`} className="img-fluid" />
           </div>
@@ -31,12 +24,11 @@ function RandomWar(props) {
         <div className="col-lg-4 d-flex justify-content-center align-items-center">
           <button onClick={() => {
             console.log('clicked');
-            console.log(numbers_ar);
-            dispatch(randomCards(numbers_ar, suits_ar));
+            dispatch(randomCards());
           }} className="btn btn-danger fs-3 rounded">FIGHT!</button>
         </div>
         <div className="col-lg-4">
-          <h3><span className="border-bottom">loadAviv</span></h3>
+          <h3><span className="border-bottom">{player2.name}</span></h3>
           <div className="">
             <img src={`./cards-images/${player2.card.suit}/${player2.card.num}.png`} className="img-fluid" />
           </div>

@@ -9,12 +9,11 @@ function SetGame(props) {
   const player1 = useRef();
   const player2 = useRef();
 
-  const numbers_ar = ['A', 2, 3, 4, 5, 6, 7, 8, 9, 10, 'J', 'Q', 'K'];
-  const suits_ar = ['Hearts', 'Diamonds', 'Spades', 'Clubs'];
+
 
   useEffect(() => {
-    dispatch(setArrays(numbers_ar, suits_ar));
-    dispatch(randomCards(numbers_ar, suits_ar));
+    dispatch(setArrays());
+    dispatch(randomCards());
   }, [])
 
   return (

@@ -1,7 +1,10 @@
 import { ActionTypes } from "../actionTypes/actionTypes";
 import { random } from 'lodash';
+import { useSelector } from "react-redux";
 
-export const setArrays = (numbers_ar, suits_ar) => {
+export const setArrays = () => {
+  const numbers_ar = ['A', 2, 3, 4, 5, 6, 7, 8, 9, 10, 'J', 'Q', 'K'];
+  const suits_ar = ['Hearts', 'Diamonds', 'Spades', 'Clubs'];
   return {
     type: ActionTypes.SET_ARRAYS,
     payload: { numbers_ar, suits_ar }
@@ -14,7 +17,9 @@ export const setPlayers = (player1name, player2name) => {
   }
 }
 
-export const randomCards = (numbers_ar, suits_ar) => {
+export const randomCards = () => {
+  const arrays = setArrays();
+  const { numbers_ar, suits_ar } = arrays.payload;
   console.log("randomCards Function");
   console.log(numbers_ar);
   let player1obj = {
