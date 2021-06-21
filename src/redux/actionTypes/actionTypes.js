@@ -1,0 +1,8 @@
+export const ActionTypes = {
+  SET_ARRAYS: "SET_ARRAYS",
+  SET_PLAYERS: "SET_PLAYERS",
+  NEW_GAME: "NEW_GAME",
+  RESET_GAME: "RESET_GAME",
+  RND_CARDS: "RND_CARDS",
+  CHECK_WIN: "CHECK_WIN"
+}
