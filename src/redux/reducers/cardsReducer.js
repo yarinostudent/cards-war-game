@@ -1,20 +1,18 @@
 import { ActionTypes } from "../actionTypes/actionTypes"
 
-const initState = {
-  player1: {},
-  player2: {},
-  numbers_ar: ['A', 2, 3, 4, 5, 6, 7, 8, 9, 10, 'J', 'Q', 'K'],
+export const initState = {
+  player1: {
+    score: 0
+  },
+  player2: {
+    score: 0
+  },
+  numbers_ar: [2, 3, 4, 5, 6, 7, 8, 9, 10, 'J', 'Q', 'K', 'A'],
   suits_ar: ['Hearts', 'Diamonds', 'Spades', 'Clubs']
 }
 
 export const cardReducer = (state = initState, { type, payload }) => {
   switch (type) {
-    case ActionTypes.SET_ARRAYS:
-      return {
-        ...state,
-        numbers_ar: payload.numbers_ar,
-        suits_ar: payload.suits_ar
-      };
     case ActionTypes.SET_PLAYERS:
       return {
         ...state,
@@ -32,17 +30,37 @@ export const cardReducer = (state = initState, { type, payload }) => {
         ...state,
         player1: {
           ...state.player1,
+          score: payload.player1obj.score,
           card: {
             num: payload.player1obj.num,
-            suit: payload.player1obj.suit
+            suit: payload.player1obj.suit,
+            isWin: payload.player1obj.isWin
           }
         },
         player2: {
           ...state.player2,
+          score: payload.player2obj.score,
           card: {
             num: payload.player2obj.num,
-            suit: payload.player2obj.suit
+            suit: payload.player2obj.suit,
+            isWin: payload.player2obj.isWin
           }
+        }
+      };
+    case ActionTypes.ADD_TO_SCORE1:
+      return {
+        ...state,
+        player1: {
+          ...state.player1,
+          score: payload
+        }
+      };
+    case ActionTypes.ADD_TO_SCORE2:
+      return {
+        ...state,
+        player2: {
+          ...state.player2,
+          score: payload
         }
       };
     case ActionTypes.NEW_GAME:
@@ -55,17 +73,3 @@ export const cardReducer = (state = initState, { type, payload }) => {
 }
 
 
-// const checkWin = (num1, num2) => {
-//   let num1 = initState.numbers_ar.indexOf(num1) + 1;
-//   let num2 = initState.numbers_ar.indexOf(num2) + 1;
-//   console.log(num1, num2);
-//   if (num1 > num2) {
-//     return 1;
-//   }
-//   if (num2 > num1) {
-//     return 2;
-//   }
-//   else {
-//     return 0
-//   }
-// }

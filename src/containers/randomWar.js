@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { randomCards } from '../redux/actions/gameActions';
+import { addToScore1, addToScore2, randomCards } from '../redux/actions/gameActions';
 
 function RandomWar(props) {
 
@@ -11,10 +11,28 @@ function RandomWar(props) {
   console.log(player1);
   console.log(player2);
 
+  const checkWhoWin = () => {
+    if (player1.card.isWin && !player2.card.isWin) {
+      return (
+        <h1>{player1.name} Won!</h1>
+      )
+    }
+    if (player2.card.isWin && !player1.card.isWin) {
+      return (
+        <h1>{player2.name} Won!</h1>
+      )
+    }
+    if (player1.card.isWin && player2.card.isWin) {
+      return (
+        <h1>Even!</h1>
+      )
+    }
+  }
+
   return (
     <div className="container">
       <h3 className="text-center">The Battle Begins..</h3>
-      <div className="row text-center justify-content-evenly">
+      <div className="row row-cols-sm-3 text-center justify-content-evenly">
         <div className="col-lg-4">
           <h3><span className="border-bottom">{player1.name}</span></h3>
           <div className="">
@@ -25,6 +43,7 @@ function RandomWar(props) {
           <button onClick={() => {
             console.log('clicked');
             dispatch(randomCards());
+            checkWhoWin();
           }} className="btn btn-danger fs-3 rounded">FIGHT!</button>
         </div>
         <div className="col-lg-4">
@@ -34,7 +53,9 @@ function RandomWar(props) {
           </div>
         </div>
       </div>
-    </div>
+      <div className="row text-center text-success">
+      </div>
+    </div >
   )
 }
 

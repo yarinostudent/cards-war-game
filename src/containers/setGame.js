@@ -9,12 +9,9 @@ function SetGame(props) {
   const player1 = useRef();
   const player2 = useRef();
 
-
-
-  useEffect(() => {
-    dispatch(setArrays());
-    dispatch(randomCards());
-  }, [])
+  // useEffect(() => {
+  //   dispatch(setArrays());
+  // }, [])
 
   return (
     <div className="container text-center">
@@ -28,6 +25,7 @@ function SetGame(props) {
             <button onClick={() => {
               console.log(player1.current.value, player2.current.value);
               dispatch(setPlayers(player1.current.value, player2.current.value))
+              dispatch(randomCards());
             }} className="btn btn-info rounded">Start Game</button>
           </NavLink>
         </div>
