@@ -1,19 +1,49 @@
 import { ActionTypes } from "../actionTypes/actionTypes"
 
 const initState = {
+  player1: {},
+  player2: {},
+  numbers_ar: ['A', 2, 3, 4, 5, 6, 7, 8, 9, 10, 'J', 'Q', 'K'],
+  suits_ar: ['Hearts', 'Diamonds', 'Spades', 'Clubs']
 }
 
 export const cardReducer = (state = initState, { type, payload }) => {
   switch (type) {
     case ActionTypes.SET_ARRAYS:
-      return { ...state, numbers_ar: payload.numbers_ar, suits_ar: payload.suits_ar };
+      return {
+        ...state,
+        numbers_ar: payload.numbers_ar,
+        suits_ar: payload.suits_ar
+      };
     case ActionTypes.SET_PLAYERS:
-      return { ...state, player1: { name: payload[0] }, player2: { name: payload[1] } };
+      return {
+        ...state,
+        player1: {
+          ...state.player1,
+          name: payload[0]
+        },
+        player2: {
+          ...state.player2,
+          name: payload[1]
+        }
+      };
     case ActionTypes.RND_CARDS:
       return {
         ...state,
-        player1: { card: { num: payload.player1obj.num, suit: payload.player1obj.suit } },
-        player2: { card: { num: payload.player2obj.num, suit: payload.player2obj.suit } }
+        player1: {
+          ...state.player1,
+          card: {
+            num: payload.player1obj.num,
+            suit: payload.player1obj.suit
+          }
+        },
+        player2: {
+          ...state.player2,
+          card: {
+            num: payload.player2obj.num,
+            suit: payload.player2obj.suit
+          }
+        }
       };
     case ActionTypes.NEW_GAME:
       return state;

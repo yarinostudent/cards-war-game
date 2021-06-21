@@ -3,7 +3,7 @@ import { random } from 'lodash';
 
 export const setArrays = (numbers_ar, suits_ar) => {
   return {
-    type: ActionTypes.SET_PLAYERS,
+    type: ActionTypes.SET_ARRAYS,
     payload: { numbers_ar, suits_ar }
   }
 }
@@ -15,16 +15,17 @@ export const setPlayers = (player1name, player2name) => {
 }
 
 export const randomCards = (numbers_ar, suits_ar) => {
-  console.log("CheckRandoms Function");
-
+  console.log("randomCards Function");
+  console.log(numbers_ar);
   let player1obj = {
     num: numbers_ar[random(12)],
     suit: suits_ar[random(3)]
   }
   console.log("player1 rnd", player1obj);
-
+  let rand = random(12);
+  console.log(rand);
   let player2obj = {
-    num: numbers_ar[random(12)],
+    num: numbers_ar[rand],
     suit: suits_ar[random(3)]
   }
   console.log("player2 rnd", player2obj);
@@ -33,7 +34,6 @@ export const randomCards = (numbers_ar, suits_ar) => {
     console.log("While");
     player2obj.suit = suits_ar[random(3)];
   }
-  console.log("randomCards Function");
 
   return {
     type: ActionTypes.RND_CARDS,
