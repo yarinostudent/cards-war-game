@@ -34,6 +34,8 @@ export const randomCards = (numbers_ar, suits_ar) => {
     console.log("While");
     player2obj.suit = suits_ar[random(3)];
   }
+  
+  
 
   return {
     type: ActionTypes.RND_CARDS,
