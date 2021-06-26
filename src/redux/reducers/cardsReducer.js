@@ -9,6 +9,8 @@ export const initState = {
 
 export const cardReducer = (state = initState, { type, payload }) => {
   switch (type) {
+    case ActionTypes.GET_STATE:
+      return { ...state };
     case ActionTypes.SET_PLAYERS:
       console.log(state);
       return {

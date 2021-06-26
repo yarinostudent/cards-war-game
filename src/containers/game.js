@@ -1,13 +1,17 @@
 import React from 'react';
+import Header from './header';
 import RandomWar from './randomWar';
 import Status from './status';
 
 function Game(props) {
 
   return (
-    <div className="container">
-      <RandomWar />
-      <Status />
+    <div>
+      <Header />
+      <div className="container d-flex justify-content-center align-items-center" style={{ height: '80vh' }}>
+        <RandomWar />
+        {/* <Status /> */}
+      </div>
     </div>
   )
 }
