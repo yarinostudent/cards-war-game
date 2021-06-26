@@ -11,7 +11,6 @@ export const setPlayers = (player1name, player2name) => {
   }
 }
 
-
 //The Brain: Random cards every call for each players and check if they are equals then random again. Returns an object with 2 objects which contains the cards if who win this round
 export const randomCards = () => {
   console.log("randomCards Function");

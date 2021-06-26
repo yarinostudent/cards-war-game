@@ -1,14 +1,28 @@
 import React, { useRef } from 'react';
+import { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { NavLink } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import { randomCards, setPlayers } from '../redux/actions/gameActions';
 
 function SetGame(props) {
 
   const dispatch = useDispatch();
+  const history = useHistory();
+
+  const [err, setErr] = useState(false);
+
   const player1 = useRef();
   const player2 = useRef();
 
+  const onSubmit = () => {
+    if (player1.current.value && player2.current.value) {
+      dispatch(setPlayers(player1.current.value, player2.current.value))
+      dispatch(randomCards());
+      history.push("/startGame")
+    } else {
+      setErr(true);
+    }
+  }
 
   return (
     <div className="container text-center">
@@ -16,18 +30,19 @@ function SetGame(props) {
       <h4>Please Enter Your Names: </h4>
       <div className="row justify-content-center">
         <div className="col-lg-2">
-          <input ref={player1} type="text" className="form-control mb-3" placeholder="Player 1" />
-          <input ref={player2} type="text" className="form-control mb-3" placeholder="Player 2" />
-          <NavLink to="/startGame">
-            <button onClick={() => {
-              console.log(player1.current.value, player2.current.value);
-              dispatch(setPlayers(player1.current.value, player2.current.value))
-              dispatch(randomCards());
-            }} className="btn btn-info rounded">Start Game</button>
-          </NavLink>
+          <input ref={player1} type="text" className={`form-control mb-3 ${err ? 'border-danger' : ''}`} placeholder="Player 1" />
+          <input ref={player2} type="text" className={`form-control mb-3 ${err ? 'border-danger' : ''}`} placeholder="Player 2" />
+          <button onClick={onSubmit} className="btn btn-info rounded">Start Game</button>
         </div>
+        {err &&
+          <h1 className="mt-5">
+            <span className="bg-light text-danger p-1">
+              * Please Fill The Names Fields To Start The Game
+            </span>
+          </h1>
+        }
       </div>
-    </div>
+    </div >
   )
 }
 

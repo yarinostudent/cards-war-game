@@ -9,12 +9,6 @@ import { getFirstState } from './redux/actions/gameActions';
 
 function App() {
 
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    dispatch(getFirstState())
-
-  }, [])
   return (
     <div className="App">
       <Router>

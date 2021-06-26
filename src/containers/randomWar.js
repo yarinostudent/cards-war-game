@@ -17,6 +17,7 @@ function RandomWar(props) {
 
   useEffect(() => {
     checkWhoWin();
+    setActivateChecker(!activateChecker)
   }, [])
 
   useEffect(() => {
@@ -31,17 +32,19 @@ function RandomWar(props) {
       setPlayer(player2.name + " Won!")
       dispatch({ type: ActionTypes.ADD_TO_SCORE2, payload: player2.score + 1 })
     } else {
+      setPlayer("Even!")
       for (let i = 1; i <= 3; i++) {
         console.log(activateChecker);
         setTimeout(() => {
           dispatch(randomCards());
+          setPlayer(i)
           if (i == 3) {
             setActivateChecker(!activateChecker);
           }
-        }, 600 * i)
-
+        }, 700 * i)
+        // setPlayer(i)
       }
-      setPlayer("Even!")
+
     }
   }
 
