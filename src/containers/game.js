@@ -1,19 +1,17 @@
-import React, { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { randomCards, setArrays } from '../redux/actions/gameActions';
+import React from 'react';
+import Header from './header';
 import RandomWar from './randomWar';
+import Status from './status';
 
 function Game(props) {
 
-  let num_ar = useSelector((state) => state.numbers_ar)
-  console.log(num_ar);
-  const dispatch = useDispatch();
-
-
   return (
-    <div className="container">
-      <RandomWar />
-      {/* <Status /> */}
+    <div>
+      <Header />
+      <div className="container d-flex justify-content-center align-items-center" style={{ height: '80vh' }}>
+        <RandomWar />
+        {/* <Status /> */}
+      </div>
     </div>
   )
 }
