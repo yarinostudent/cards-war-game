@@ -16,8 +16,8 @@ function SetGame(props) {
       <h4>Please Enter Your Names: </h4>
       <div className="row justify-content-center">
         <div className="col-lg-2">
-          <input ref={player1} type="text" className="form-control mb-3" placeholder="Player 1" defaultValue="Yarin" />
-          <input ref={player2} type="text" className="form-control mb-3" placeholder="Player 2" defaultValue="Aviv" />
+          <input ref={player1} type="text" className="form-control mb-3" placeholder="Player 1" />
+          <input ref={player2} type="text" className="form-control mb-3" placeholder="Player 2" />
           <NavLink to="/startGame">
             <button onClick={() => {
               console.log(player1.current.value, player2.current.value);
