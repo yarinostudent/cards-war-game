@@ -1,7 +1,7 @@
-import React, { useEffect, useRef } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import React, { useRef } from 'react';
+import { useDispatch } from 'react-redux';
 import { NavLink } from 'react-router-dom';
-import { randomCards, setArrays, setPlayers } from '../redux/actions/gameActions';
+import { randomCards, setPlayers } from '../redux/actions/gameActions';
 
 function SetGame(props) {
 
@@ -9,9 +9,6 @@ function SetGame(props) {
   const player1 = useRef();
   const player2 = useRef();
 
-  // useEffect(() => {
-  //   dispatch(setArrays());
-  // }, [])
 
   return (
     <div className="container text-center">
