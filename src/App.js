@@ -5,6 +5,7 @@ import SetGame from './containers/setGame';
 import { useDispatch } from 'react-redux';
 import { useEffect } from 'react';
 import { getFirstState } from './redux/actions/gameActions';
+import appStore from './redux/store';
 
 
 function App() {

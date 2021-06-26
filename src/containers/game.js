@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import appStore from '../redux/store';
 import Header from './header';
 import RandomWar from './randomWar';
 import Status from './status';

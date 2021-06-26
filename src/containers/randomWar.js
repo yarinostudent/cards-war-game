@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
-import { randomCards } from '../redux/actions/gameActions';
+import { randomCards, setPlayers } from '../redux/actions/gameActions';
 import { ActionTypes } from '../redux/actionTypes/actionTypes';
+import appStore from '../redux/store';
 import Status from './status';
 
 function RandomWar(props) {
@@ -14,37 +15,39 @@ function RandomWar(props) {
 
   const player1 = useSelector((state) => state.player1)
   const player2 = useSelector((state) => state.player2)
+  const state = useSelector((state) => state)
 
   useEffect(() => {
+    console.log(state);
     checkWhoWin();
-    setActivateChecker(!activateChecker)
+    // setActivateChecker(!activateChecker)
+    setPlayer(player);
   }, [])
 
   useEffect(() => {
     checkWhoWin();
   }, [activateChecker, setActivateChecker])
 
+
   const checkWhoWin = () => {
     if (player1.card.isWin && !player2.card.isWin) {
-      setPlayer(player1.name + " Won!")
+      setPlayer(localStorage['name1'] + " Won!")
       dispatch({ type: ActionTypes.ADD_TO_SCORE1, payload: player1.score + 1 })
     } else if (player2.card.isWin && !player1.card.isWin) {
-      setPlayer(player2.name + " Won!")
+      setPlayer(localStorage['name2'] + " Won!")
       dispatch({ type: ActionTypes.ADD_TO_SCORE2, payload: player2.score + 1 })
     } else {
       setPlayer("Even!")
-      for (let i = 1; i <= 3; i++) {
-        console.log(activateChecker);
+      let i = 3;
+      while (i >= 1) {
         setTimeout(() => {
           dispatch(randomCards());
           setPlayer(i)
-          if (i == 3) {
-            setActivateChecker(!activateChecker);
-          }
         }, 700 * i)
-        // setPlayer(i)
+        i--;
       }
-
+      setActivateChecker(!activateChecker);
+      console.log(activateChecker);
     }
   }
 
@@ -53,7 +56,7 @@ function RandomWar(props) {
       <h1 className="text-center mt-5 ">The Battle Begins..</h1>
       <div className="row row-cols-sm-3 text-center justify-content-evenly">
         <div className="col-lg-4">
-          <h3><span className="border-bottom">{player1.name}</span></h3>
+          <h3><span className="border-bottom">{localStorage['name1']}</span></h3>
           <div className="">
             <img src={`./cards-images/${player1.card.suit}/${player1.card.num}.png`} className="img-fluid" />
           </div>
@@ -70,7 +73,7 @@ function RandomWar(props) {
 
         </div>
         <div className="col-lg-4">
-          <h3><span className="border-bottom">{player2.name}</span></h3>
+          <h3><span className="border-bottom">{localStorage['name2']}</span></h3>
           <div className="">
             <img src={`./cards-images/${player2.card.suit}/${player2.card.num}.png`} className="img-fluid" />
           </div>

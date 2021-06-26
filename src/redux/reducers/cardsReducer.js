@@ -9,10 +9,9 @@ export const initState = {
 
 export const cardReducer = (state = initState, { type, payload }) => {
   switch (type) {
-    case ActionTypes.GET_STATE:
-      return { ...state };
+    case "GET_ARRAYS":
+      return { ...state, numbers_ar: state.numbers_ar, suits_ar: state.suits_ar }
     case ActionTypes.SET_PLAYERS:
-      console.log(state);
       return {
         ...state,
         player1: {
@@ -27,8 +26,6 @@ export const cardReducer = (state = initState, { type, payload }) => {
         }
       };
     case ActionTypes.RND_CARDS:
-      console.log(state);
-      console.log(payload);
       return {
         ...state,
         player1: {
@@ -72,7 +69,7 @@ export const cardReducer = (state = initState, { type, payload }) => {
     case ActionTypes.RESET_GAME:
       return state;
     default:
-      return state;
+      return { ...state };
   }
 }
 

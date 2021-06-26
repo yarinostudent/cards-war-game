@@ -15,30 +15,39 @@ export const setPlayers = (player1name, player2name) => {
 export const randomCards = () => {
   console.log("randomCards Function");
   const { numbers_ar, suits_ar } = state;
+  if (!localStorage['numbers_ar'] || !localStorage['suits_ar']) {
+    localStorage.setItem('numbers_ar', JSON.stringify(numbers_ar));
+    localStorage.setItem('suits_ar', JSON.stringify(suits_ar));
+  }
 
+  // num: localStorage['numbers_ar'] ? JSON.parse(localStorage['numbers_ar']) : numbers_ar[random(12)],
+  //   suit: localStorage['suits_ar'] ? JSON.parse(localStorage['suits_ar']) : suits_ar[random(3)]
+  console.log(JSON.parse(localStorage['numbers_ar'])[random(12)]);
+  console.log(JSON.parse(localStorage['suits_ar'])[random(3)]);
   let player1obj = {
-    num: numbers_ar[random(12)],
-    suit: suits_ar[random(3)],
+
+    num: JSON.parse(localStorage['numbers_ar'])[random(12)],
+    suit: JSON.parse(localStorage['suits_ar'])[random(3)]
   }
 
   let player2obj = {
-    num: numbers_ar[random(12)],
-    suit: suits_ar[random(3)],
+    num: JSON.parse(localStorage['numbers_ar'])[random(12)],
+    suit: JSON.parse(localStorage['suits_ar'])[random(3)]
   }
 
   while (player1obj.suit === player2obj.suit && player1obj.num === player2obj.num) {
     console.log("While");
     player1obj = {
-      num: numbers_ar[random(12)],
-      suit: suits_ar[random(3)],
+      num: JSON.parse(localStorage['numbers_ar'])[random(12)],
+      suit: JSON.parse(localStorage['suits_ar'])[random(3)]
     }
     player2obj = {
-      num: numbers_ar[random(12)],
-      suit: suits_ar[random(3)],
+      num: JSON.parse(localStorage['numbers_ar'])[random(12)],
+      suit: JSON.parse(localStorage['suits_ar'])[random(3)]
     }
   }
-  
-  
+
+
 
   let number1 = numbers_ar.indexOf(player1obj.num) + 1;
   let number2 = numbers_ar.indexOf(player2obj.num) + 1;
