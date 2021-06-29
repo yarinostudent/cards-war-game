@@ -19,9 +19,7 @@ function SetGame(props) {
 
   const onSubmit = () => {
     if (player1.current.value && player2.current.value) {
-      localStorage.setItem('name1', player1.current.value)
-      localStorage.setItem('name2', player2.current.value)
-      dispatch(setPlayers(localStorage['name1'], localStorage['name2']))
+      dispatch(setPlayers(player1.current.value, player2.current.value))
       dispatch(randomCards());
       history.push("/startGame")
     } else {

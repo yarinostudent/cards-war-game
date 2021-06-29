@@ -46,8 +46,8 @@ export const cardReducer = (state = initState, { type, payload }) => {
         }
       };
     case ActionTypes.ADD_TO_SCORE1:
-      console.log("ADD_TO_SCORE1");
-      console.log(payload);
+      // console.log("ADD_TO_SCORE1");
+      // console.log(payload);
       return {
         ...state,
         player1: {
@@ -56,7 +56,7 @@ export const cardReducer = (state = initState, { type, payload }) => {
         }
       };
     case ActionTypes.ADD_TO_SCORE2:
-      console.log("ADD_TO_SCORE2");
+      // console.log("ADD_TO_SCORE2");
       return {
         ...state,
         player2: {
