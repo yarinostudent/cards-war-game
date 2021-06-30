@@ -1,16 +1,17 @@
 import { ActionTypes } from "../actionTypes/actionTypes"
 
-export const initState = {
+export const initState = localStorage['state'] ? JSON.parse(localStorage.getItem('state')) : {
   player1: {},
   player2: {},
   numbers_ar: [2, 3, 4, 5, 6, 7, 8, 9, 10, 'J', 'Q', 'K', 'A'],
-  suits_ar: ['Hearts', 'Diamonds', 'Spades', 'Clubs']
+  suits_ar: ['Hearts', 'Diamonds', 'Spades', 'Clubs'],
+  activateChecker: null
 }
 
 export const cardReducer = (state = initState, { type, payload }) => {
   switch (type) {
-    case "GET_ARRAYS":
-      return { ...state, numbers_ar: state.numbers_ar, suits_ar: state.suits_ar }
+    case ActionTypes.SET_ACTIVATE_CHECKER:
+      return { ...state, activateChecker: payload }
     case ActionTypes.SET_PLAYERS:
       return {
         ...state,

@@ -1,6 +1,7 @@
 import { ActionTypes } from "../actionTypes/actionTypes";
 import { random } from 'lodash';
 import { initState as state } from '../reducers/cardsReducer';
+import appStore from "../store";
 
 
 //Setting The Players Names
@@ -10,16 +11,19 @@ export const setPlayers = (player1name, player2name) => {
     payload: [player1name, player2name]
   }
 }
-
-//The Brain: Random cards every call for each players and check if they are equals then random again. Returns an object with 2 objects which contains the cards if who win this round
-export const randomCardsThunk = () => {
-  return async (dispatch) => {
-    await dispatch(randomCards())
+export const setActivateChecker = (activateChecker) => {
+  return {
+    type: ActionTypes.SET_ACTIVATE_CHECKER,
+    payload: !activateChecker
   }
 }
 
+//The Brain: Random cards every call for each players and check if they are equals then random again. Returns an object with 2 objects which contains the cards if who win this round
+
+
 export const randomCards = () => {
   console.log("randomCards Function");
+  localStorage.setItem('state', JSON.stringify(appStore.getState()));
   const { numbers_ar, suits_ar } = state;
 
   let player1obj = {

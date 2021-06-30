@@ -3,11 +3,12 @@ import { useEffect } from 'react';
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
-import { randomCards, setPlayers } from '../redux/actions/gameActions';
+import { randomCards, setActivateChecker, setPlayers } from '../redux/actions/gameActions';
+import { ActionTypes } from '../redux/actionTypes/actionTypes';
 import appStore from '../redux/store';
 
 function SetGame(props) {
-
+  console.log("Run 1");
   const dispatch = useDispatch();
   const history = useHistory();
 
@@ -17,10 +18,15 @@ function SetGame(props) {
   const player1 = useRef();
   const player2 = useRef();
 
+  useEffect(() => {
+    localStorage.clear();
+    dispatch({ type: ActionTypes.SET_ACTIVATE_CHECKER, payload: null })
+  }, [])
+
   const onSubmit = () => {
     if (player1.current.value && player2.current.value) {
+
       dispatch(setPlayers(player1.current.value, player2.current.value))
-      dispatch(randomCards());
       history.push("/startGame")
     } else {
       setErr(true);

@@ -6,12 +6,14 @@ import { useDispatch } from 'react-redux';
 import { useEffect } from 'react';
 import { getFirstState } from './redux/actions/gameActions';
 import appStore from './redux/store';
+import Header from './containers/header';
 
 
 function App() {
 
   return (
     <div className="App">
+      <Header />
       <Router>
         <Switch>
           <Route path="/" exact component={SetGame} />
