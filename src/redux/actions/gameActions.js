@@ -11,6 +11,8 @@ export const setPlayers = (player1name, player2name) => {
     payload: [player1name, player2name]
   }
 }
+
+//Activating chekWhoWin Function in randomWar Component
 export const setActivateChecker = (activateChecker) => {
   return {
     type: ActionTypes.SET_ACTIVATE_CHECKER,
@@ -18,8 +20,7 @@ export const setActivateChecker = (activateChecker) => {
   }
 }
 
-//The Brain: Random cards every call for each players and check if they are equals then random again. Returns an object with 2 objects which contains the cards if who win this round
-
+//The Brain: Random cards every call for each players and check if they are equals then random again. Returns an object with 2 objects which  contains the cards and who win this round
 
 export const randomCards = () => {
   console.log("randomCards Function");

@@ -1,42 +1,35 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
-import { randomCards, randomCardsThunk, setActivateChecker, setPlayers } from '../redux/actions/gameActions';
+import { randomCards, setActivateChecker } from '../redux/actions/gameActions';
 import { ActionTypes } from '../redux/actionTypes/actionTypes';
-import appStore from '../redux/store';
 import Status from './status';
 
 function RandomWar(props) {
-  console.log("Run 3");
 
   const dispatch = useDispatch();
-
   const [player, setPlayer] = useState("");
-
 
   const activateChecker = useSelector((state) => state.activateChecker)
   const player1 = useSelector((state) => state.player1)
   const player2 = useSelector((state) => state.player2)
-  const state = useSelector((state) => state)
 
+  //first load and no storage trigger the function
   useEffect(() => {
-    console.log("Use 1");
-    console.log(localStorage.getItem('state'));
     if (localStorage.getItem('state') != null) {
       checkWhoWin();
     }
   }, [])
 
+  //trigger the function every activateChecker change unless its the first load
   useEffect(() => {
-    console.log("Use 2");
     if (activateChecker != null) {
       checkWhoWin();
     }
   }, [activateChecker])
 
-
+  //Checing who won and setting the winner in the dom, if even generates card 3 times and last round is the winner
   const checkWhoWin = () => {
-    console.log('checkWhoWin');
     if (player1.card.isWin && !player2.card.isWin) {
       setPlayer(player1.name + " Won!")
       dispatch({ type: ActionTypes.ADD_TO_SCORE1, payload: player1.score + 1 })
@@ -61,47 +54,51 @@ function RandomWar(props) {
   }
 
   return (
-    <div className="container mt-5 text-center">
-      {activateChecker == null ?
-        (
-          <button onClick={() => {
-            dispatch(randomCards());
-            dispatch(setActivateChecker(activateChecker))
-          }} className={`btn btn-danger fs-3 rounded`}>FIGHT!</button>
-        )
-        :
-        (
-          <>
-            <h1 className="text-center mt-5 ">The Battle Begins..</h1>
-            <div className="row row-cols-sm-3 text-center justify-content-evenly">
-              <div className="col-lg-4">
-                <h3><span className="border-bottom">{player1.name}</span></h3>
-                <div className="">
-                  <img src={`./cards-images/${player1.card.suit}/${player1.card.num}.png`} className="img-fluid" />
-                </div>
-              </div>
-              <div className="col-lg-4 d-flex flex-column mt-5 justify-content-center align-items-center">
+    <div className={`container-fluid ${activateChecker != null ? 'bg-success' : ''}`} >
+      <div className="container text-center">
+        {activateChecker == null ?
+          (
+            <div className="row justify-content-center align-items-center" style={{ minHeight: '50vh' }}>
+              <div className="col-lg-3">
                 <button onClick={() => {
                   dispatch(randomCards());
                   dispatch(setActivateChecker(activateChecker))
-                }} className={`btn btn-danger fs-3 rounded ${player == "Even" || player >= 1 ? 'disabled' : ''}`}>FIGHT!</button>
-                <div className="text-success fs-1 mb-3 mt-3">
-                  {player}
-                </div>
-
+                }} className={`btn btn-danger fs-3 rounded`}>FIGHT!</button>
               </div>
-              <div className="col-lg-4">
-                <h3><span className="border-bottom">{player2.name}</span></h3>
-                <div className="">
+            </div>
+          )
+          :
+          (
+            <>
+              <h1 className="text-center ">The Battle Begins..</h1>
+              <div className="row row-cols-sm-3 text-center justify-content-evenly">
+                <div className="col-lg-4">
+                  <h3><span className="border-bottom">{player1.name}</span></h3>
+                  <div className="">
+                    <img src={`./cards-images/${player1.card.suit}/${player1.card.num}.png`} className="img-fluid" />
+                  </div>
+                </div>
+                <div className="col-lg-4 d-flex flex-column mt-5 justify-content-center align-items-center">
+                  <button onClick={() => {
+                    dispatch(randomCards());
+                    dispatch(setActivateChecker(activateChecker))
+                  }} className={`btn btn-danger fs-3 rounded ${player == "Even" || player >= 1 ? 'disabled' : ''}`}><i className="fa fa-repeat" aria-hidden="true"></i></button>
+                  <div className="text-dark fw-bold fs-1 mb-3 mt-3">
+                    {player}
+                  </div>
+
+                </div>
+                <div className="col-lg-4">
+                  <h3><span className="border-bottom">{player2.name}</span></h3>
                   <img src={`./cards-images/${player2.card.suit}/${player2.card.num}.png`} className="img-fluid" />
                 </div>
+                <Status />
               </div>
-              <Status />
-            </div>
-            <NavLink to="/" className="btn btn-dark">New Game</NavLink>
-          </>
-        )
-      }
+              <NavLink to="/" className={`btn btn-dark ${player == "Even" || player >= 1 ? 'disabled' : ''}`}>New Game</NavLink>
+            </>
+          )
+        }
+      </div >
     </div >
   )
 }

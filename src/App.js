@@ -1,11 +1,7 @@
 import './App.css';
-import StartGame from './containers/game';
+import StartGame from './containers/randomWar';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import SetGame from './containers/setGame';
-import { useDispatch } from 'react-redux';
-import { useEffect } from 'react';
-import { getFirstState } from './redux/actions/gameActions';
-import appStore from './redux/store';
 import Header from './containers/header';
 
 
@@ -14,12 +10,12 @@ function App() {
   return (
     <div className="App">
       <Header />
-      <Router>
-        <Switch>
-          <Route path="/" exact component={SetGame} />
-          <Route path="/startGame" component={StartGame} />
-        </Switch>
-      </Router>
+        <Router>
+          <Switch>
+            <Route path="/" exact component={SetGame} />
+            <Route path="/startGame" component={StartGame} />
+          </Switch>
+        </Router>
     </div>
   );
 }

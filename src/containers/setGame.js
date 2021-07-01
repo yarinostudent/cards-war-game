@@ -1,31 +1,28 @@
-import React, { useRef } from 'react';
-import { useEffect } from 'react';
-import { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import React, { useRef, useState, useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
-import { randomCards, setActivateChecker, setPlayers } from '../redux/actions/gameActions';
+import { setPlayers } from '../redux/actions/gameActions';
 import { ActionTypes } from '../redux/actionTypes/actionTypes';
-import appStore from '../redux/store';
 
 function SetGame(props) {
-  console.log("Run 1");
+
   const dispatch = useDispatch();
   const history = useHistory();
 
   const [err, setErr] = useState(false);
-  const state = useSelector((state) => state)
 
   const player1 = useRef();
   const player2 = useRef();
 
+  //Reset
   useEffect(() => {
     localStorage.clear();
     dispatch({ type: ActionTypes.SET_ACTIVATE_CHECKER, payload: null })
   }, [])
 
+  //Validate Names and moving to the game comp if true, show error if false
   const onSubmit = () => {
     if (player1.current.value && player2.current.value) {
-
       dispatch(setPlayers(player1.current.value, player2.current.value))
       history.push("/startGame")
     } else {

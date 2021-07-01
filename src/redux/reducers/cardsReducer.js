@@ -10,8 +10,11 @@ export const initState = localStorage['state'] ? JSON.parse(localStorage.getItem
 
 export const cardReducer = (state = initState, { type, payload }) => {
   switch (type) {
+    //checkWhoWin function trigger
     case ActionTypes.SET_ACTIVATE_CHECKER:
       return { ...state, activateChecker: payload }
+
+    //Setting the Players names
     case ActionTypes.SET_PLAYERS:
       return {
         ...state,
@@ -26,6 +29,8 @@ export const cardReducer = (state = initState, { type, payload }) => {
           name: payload[1]
         }
       };
+
+    // Generating cards + isWin prop true/false
     case ActionTypes.RND_CARDS:
       return {
         ...state,
@@ -46,9 +51,9 @@ export const cardReducer = (state = initState, { type, payload }) => {
           }
         }
       };
+
+    //Adding score to player 1
     case ActionTypes.ADD_TO_SCORE1:
-      // console.log("ADD_TO_SCORE1");
-      // console.log(payload);
       return {
         ...state,
         player1: {
@@ -56,8 +61,8 @@ export const cardReducer = (state = initState, { type, payload }) => {
           score: payload
         }
       };
+    //Adding score to player 2
     case ActionTypes.ADD_TO_SCORE2:
-      // console.log("ADD_TO_SCORE2");
       return {
         ...state,
         player2: {
@@ -65,12 +70,8 @@ export const cardReducer = (state = initState, { type, payload }) => {
           score: payload
         }
       };
-    case ActionTypes.NEW_GAME:
-      return state;
-    case ActionTypes.RESET_GAME:
-      return state;
     default:
-      return { ...state };
+      return state;
   }
 }
 
