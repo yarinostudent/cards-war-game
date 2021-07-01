@@ -81,10 +81,12 @@ function RandomWar(props) {
                 <div className="col-lg-4 d-flex flex-column mt-5 justify-content-center align-items-center">
                   <button onClick={() => {
                     setPlayer('Generating')
-                    dispatch(randomCards());
+                    setTimeout(() => {
+                      dispatch(randomCards());
+                    }, 400)
                     setTimeout(() => {
                       dispatch(setActivateChecker(activateChecker))
-                    }, 400)
+                    }, 600)
                   }} className={`btn btn-danger fs-3 rounded ${player == "Even" || player == "Generating" || player >= 1 ? 'disabled' : ''}`}><i className="fa fa-repeat" aria-hidden="true"></i></button>
                   <div className="text-dark fw-bold fs-1 mb-3 mt-3">
                     {player}
