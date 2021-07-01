@@ -7,7 +7,7 @@ function Status(props) {
   const player2 = useSelector((state) => state.player2)
 
   return (
-    <div className="container mb-5">
+    <div className="container mb-2">
       <div className="row text-center justify-content-center table-responsive">
         <table className="table table-striped table-dark" style={{ maxWidth: '300px' }}>
           <thead>
