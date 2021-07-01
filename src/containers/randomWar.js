@@ -71,14 +71,14 @@ function RandomWar(props) {
           (
             <>
               <h1 className="text-center ">The Battle Begins..</h1>
-              <div className="row row-cols-sm-3 text-center justify-content-evenly">
-                <div className="col-lg-4">
+              <div className="row text-center justify-content-evenly">
+                <div className="col">
                   <h3><span className="border-bottom">{player1.name}</span></h3>
                   <div className="">
                     <img src={`./cards-images/${player1.card.suit}/${player1.card.num}.png`} className="img-fluid" />
                   </div>
                 </div>
-                <div className="col-lg-4 d-flex flex-column mt-5 justify-content-center align-items-center">
+                <div className="col d-flex flex-column mt-5 justify-content-center align-items-center">
                   <button onClick={() => {
                     setPlayer('Generating')
                     dispatch(randomCards());
@@ -91,13 +91,17 @@ function RandomWar(props) {
                   </div>
 
                 </div>
-                <div className="col-lg-4">
+                <div className="col">
                   <h3><span className="border-bottom">{player2.name}</span></h3>
                   <img src={`./cards-images/${player2.card.suit}/${player2.card.num}.png`} className="img-fluid" />
                 </div>
+              </div>
+              <div className="d-flex">
                 <Status />
               </div>
-              <NavLink to="/" className={`btn btn-dark ${player == "Even" || player >= 1 ? 'disabled' : ''}`}>New Game</NavLink>
+              <div className="d-flex justify-content-center">
+                <NavLink to="/" className={`btn w-25 btn-dark mb-3 ${player == "Even" || player >= 1 ? 'disabled' : ''}`}>New Game</NavLink>
+              </div>
             </>
           )
         }

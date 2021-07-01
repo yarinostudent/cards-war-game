@@ -8,8 +8,8 @@ function Status(props) {
 
   return (
     <div className="container mb-5">
-      <div className="row text-center justify-content-center">
-        <table className="table table-striped table-dark w-75">
+      <div className="row text-center justify-content-center table-responsive">
+        <table className="table table-striped table-dark" style={{ maxWidth: '300px' }}>
           <thead>
             <tr>
               <th>Name</th>
