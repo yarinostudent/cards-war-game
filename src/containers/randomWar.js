@@ -54,7 +54,7 @@ function RandomWar(props) {
   }
 
   return (
-    <div className={`container-fluid ${activateChecker != null ? 'bg-success' : ''}`} >
+    <div className={`container-fluid ${activateChecker != null ? 'bg-success' : ''}`} style={{ minHeight: '100vh' }} >
       <div className="container text-center">
         {activateChecker == null ?
           (
