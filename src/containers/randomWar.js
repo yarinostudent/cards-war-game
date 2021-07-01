@@ -81,9 +81,7 @@ function RandomWar(props) {
                 <div className="col-lg-4 d-flex flex-column mt-5 justify-content-center align-items-center">
                   <button onClick={() => {
                     setPlayer('Generating')
-                    setTimeout(() => {
-                      dispatch(randomCards());
-                    }, 300)
+                    dispatch(randomCards());
                     setTimeout(() => {
                       dispatch(setActivateChecker(activateChecker))
                     }, 400)
