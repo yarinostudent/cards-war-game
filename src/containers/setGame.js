@@ -36,8 +36,8 @@ function SetGame(props) {
       <h4>Please Enter Your Names: </h4>
       <div className="row justify-content-center">
         <div className="col-lg-2">
-          <input ref={player1} type="text" className={`form-control mb-3 ${err ? 'border-danger' : ''}`} placeholder="Player 1" defaultValue="11" />
-          <input ref={player2} type="text" className={`form-control mb-3 ${err ? 'border-danger' : ''}`} placeholder="Player 2" defaultValue="12" />
+          <input ref={player1} type="text" className={`form-control mb-3 ${err ? 'border-danger' : ''}`} placeholder="Player 1" />
+          <input ref={player2} type="text" className={`form-control mb-3 ${err ? 'border-danger' : ''}`} placeholder="Player 2" />
           <button onClick={onSubmit} className="btn btn-info rounded">Start Game</button>
         </div>
         {err &&
