@@ -96,7 +96,7 @@ function RandomWar(props) {
                   <img src={`./cards-images/${player2.card.suit}/${player2.card.num}.png`} className="img-fluid" />
                 </div>
               </div>
-              <div className="d-flex">
+              <div className="d-flex mt-2">
                 <Status />
               </div>
               <div className="d-flex justify-content-center">
