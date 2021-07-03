@@ -12,6 +12,8 @@ export const cardReducer = (state = initState, { type, payload }) => {
   switch (type) {
     //checkWhoWin function trigger
     case ActionTypes.SET_ACTIVATE_CHECKER:
+      console.log('Activate Reducer');
+
       return { ...state, activateChecker: payload }
 
     //Setting the Players names
