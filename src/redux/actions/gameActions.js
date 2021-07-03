@@ -14,6 +14,8 @@ export const setPlayers = (player1name, player2name) => {
 
 //Activating chekWhoWin Function in randomWar Component
 export const setActivateChecker = (activateChecker) => {
+  console.log("Saved To Local");
+  localStorage.setItem('state', JSON.stringify(appStore.getState()));
   return {
     type: ActionTypes.SET_ACTIVATE_CHECKER,
     payload: !activateChecker
@@ -24,7 +26,6 @@ export const setActivateChecker = (activateChecker) => {
 
 export const randomCards = () => {
   console.log("randomCards Function");
-  localStorage.setItem('state', JSON.stringify(appStore.getState()));
   const { numbers_ar, suits_ar } = state;
 
   let player1obj = {
