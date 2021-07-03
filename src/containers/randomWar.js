@@ -128,7 +128,7 @@ function RandomWar(props) {
                 <Status />
               </div>
               <div className="d-flex justify-content-center">
-                <NavLink to="/" className={`btn w-25 btn-dark mb-3 ${player == "Even" || player >= 1 ? 'disabled' : ''}`}>New Game</NavLink>
+                <NavLink to="/" className={`btn w-25 btn-dark mb-3 ${player == "Even" || player == "Generating" || player >= 1 ? 'disabled' : ''}`}>New Game</NavLink>
               </div>
             </>
           )
